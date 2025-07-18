@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 interface PaymentMethod {
     boolean processPayment(double amount);
     void printReceipt();
@@ -72,15 +74,49 @@ class PayPalPayment implements PaymentMethod {
 
 public class App {
     public static void main(String[] args) throws Exception {
-        PaymentMethod[] instantiate = {
-           new CreditCardPayment("1111222233334444", "Tim Ross"),
-           new DebitCardPayment("5555666677778888", "BECU"),
-           new PayPalPayment("tim.ross@gmail.com") 
-        };
+        // PaymentMethod[] instantiate = {
+        //    new CreditCardPayment("1111222233334444", "Tim Ross"),
+        //    new DebitCardPayment("5555666677778888", "BECU"),
+        //    new PayPalPayment("tim.ross@gmail.com") 
+        // };
 
-        for (PaymentMethod ea : instantiate) {
-            ea.processPayment(500);
-            ea.printReceipt();
+        // for (PaymentMethod ea : instantiate) {
+        //     ea.processPayment(500);
+        //     ea.printReceipt();
+        // }
+        int[] loopOne = {2, 6, 1, 8};
+        int[] loopTwo = {30, 20, 10, 60, 50, 40};
+        int[] loopThree = {-4, 16, 9, 1, 64, 25, 36, 4, 49};
+
+        ArrayList<Integer> one = new ArrayList<>();
+        ArrayList<Integer> two = new ArrayList<>();
+        ArrayList<Integer> three = new ArrayList<>();
+
+        for (int ea : loopOne) {
+            one.add(ea);
         }
+
+        for (int ea : loopTwo) {
+            two.add(ea);
+        }
+
+        for (int ea : loopThree) {
+            three.add(ea);
+        }
+
+        mystery(one);
+        mystery(two);
+        mystery(three);
+    }
+
+    public static void mystery(ArrayList<Integer> list) {
+        for (int i = list.size() - 1; i > 0; i--) {
+            if (list.get(i) < list.get(i - 1)) {
+                int element = list.get(i);
+                list.remove(i);
+                list.add(0, element);
+            }
+        }
+        System.out.println(list);
     }
 }
